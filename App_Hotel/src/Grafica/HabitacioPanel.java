@@ -248,11 +248,11 @@ public class HabitacioPanel extends JPanel {
 		JDateChooser cldFecha = new JDateChooser();
 		cldFecha.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		cldFecha.setDateFormatString("y/MM/d");
-		cldFecha.setBounds(10, 25, 153, 26);
+		cldFecha.setBounds(64, 25, 153, 26);
 		tblHabitacion.add(cldFecha);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(176, 28, 89, 23);
+		btnBuscar.setBounds(238, 25, 99, 26);
 		tblHabitacion.add(btnBuscar);
 
 	}
