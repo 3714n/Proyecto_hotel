@@ -3,13 +3,16 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -28,15 +31,13 @@ public class Metodos {
 			b.setText("Ingresar dato");
 		}else {	b.setText("");	
 		}
-	}
-	
+	}	
 	public static void SeleccionCasilla(String v,JTextField b) {
 		if(v.equalsIgnoreCase("Seleccione")) {
 			b.setText("Seleccione Dato");
 		}else {	 b.setText("");	
 		}
 	}
-	
 	public static void IngreseFecha(Date v,JTextField b) {
 		if(v == null) {
 			b.setText("Seleccione Dato");
@@ -129,7 +130,6 @@ public class Metodos {
 	        a1.getDocument().addDocumentListener(new SumDocumentListener(a1, a2, a3));
 	        a2.getDocument().addDocumentListener(new SumDocumentListener(a1, a2, a3));         
 	}
-	
 	public static void Reflejar2 (JTextField a1,JTextField a2,JTextField a3,JTextField a4) {
 		
 		
@@ -201,9 +201,19 @@ public class Metodos {
 	public static void limpiarRBoton (JRadioButton r) {
 		 r.setSelected(false);	
 	}
-	
-
-}
-		
+	/*public static void CasillavaciaNuevoUsuario(String v,JTextField b) {
+		if(v.isEmpty()) {
+			b.setText("Ingresar dato");
+		}else {	b.setText("");	
+		}
+	}	
+	public static void CoincidirContraseña(JLabel a,char[] b, char[] c) {
+		if(Arrays.equals(b, c)){
+			a.setText("");	
+		}else {
+		a.setText("La contraseña no es igual");}
+	}
+*/
+}		
 
 		

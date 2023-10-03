@@ -9,6 +9,8 @@ import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HabitacioPanel extends JPanel {
 
@@ -252,7 +254,11 @@ public class HabitacioPanel extends JPanel {
 		tblHabitacion.add(cldFecha);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(238, 25, 99, 26);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBuscar.setBounds(272, 25, 99, 26);
 		tblHabitacion.add(btnBuscar);
 
 	}

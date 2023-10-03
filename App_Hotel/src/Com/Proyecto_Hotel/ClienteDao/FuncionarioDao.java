@@ -14,7 +14,9 @@ public class FuncionarioDao {
 	
 	public String GuardarUsuario(Connection con, Funcionarios fcn ) {
 		PreparedStatement pst;
-		String sql = "INSERT INTO USUARIO ( Nombre, Cedula, Telefono, Direccion, Usuario, Contraseña) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO USUARIO ( Nombre, Cedula,"
+				+ " Telefono, Direccion, Roll, Usuario, Contraseña)"
+				+ " VALUES (?,?,?,?,?,?,?)";
 		
 		try {
 			
@@ -24,8 +26,9 @@ public class FuncionarioDao {
 			pst.setString(2, fcn.getCedula());
 			pst.setString(3, fcn.getTelefono());
 			pst.setString(4, fcn.getDireccion());
-			pst.setString(5, fcn.getUsuario());
-			//pst.SetPassword(6,fcn.getContraseña()):
+			pst.setString(5, fcn.getRoll());
+			pst.setString(6, fcn.getUsuario());
+			pst.setString(7, fcn.getContraseña());
 			 
 			mensaje = "Guardado con exito";
 			JOptionPane.showMessageDialog(null, mensaje);

@@ -5,20 +5,23 @@ public class Funcionarios {
 	private String Cedula;
 	private String Telefono;
 	private String Direccion;
+	private String Roll;
 	private String Usuario;
-	private char[] Contraseña;
+	private String Contraseña;
+	
 	
 	public Funcionarios() {
 		super();
 	}
 
-	public Funcionarios(String nombre, String cedula, String telefono, String direccion, String usuario,
-			char[] contraseña) {
+	public Funcionarios(String nombre, String cedula, String telefono, String direccion, String roll, String usuario,
+			String contraseña) {
 		super();
 		this.Nombre = nombre;
 		this.Cedula = cedula;
 		this.Telefono = telefono;
 		this.Direccion = direccion;
+		this.Roll = roll;
 		this.Usuario = usuario;
 		this.Contraseña = contraseña;
 	}
@@ -38,12 +41,16 @@ public class Funcionarios {
 	public String getDireccion() {
 		return Direccion;
 	}
-
+	
+	public String getRoll() {
+		return Roll;
+	}
+	
 	public String getUsuario() {
 		return Usuario;
 	}
 
-	public char[] getContraseña() {
+	public String getContraseña() {
 		return Contraseña;
 	}
 
@@ -63,11 +70,15 @@ public class Funcionarios {
 		Direccion = direccion;
 	}
 
+	public void setRoll(String roll) {
+		Direccion = roll;
+	}
+	
 	public void setUsuario(String usuario) {
 		Usuario = usuario;
 	}
 
-	public void setContraseña(char[] contraseña) {
+	public void setContraseña(String contraseña) {
 		Contraseña = contraseña;
 	}
 	
