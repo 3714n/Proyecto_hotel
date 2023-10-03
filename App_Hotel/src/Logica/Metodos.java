@@ -201,19 +201,7 @@ public class Metodos {
 	public static void limpiarRBoton (JRadioButton r) {
 		 r.setSelected(false);	
 	}
-	/*public static void CasillavaciaNuevoUsuario(String v,JTextField b) {
-		if(v.isEmpty()) {
-			b.setText("Ingresar dato");
-		}else {	b.setText("");	
-		}
-	}	
-	public static void CoincidirContraseña(JLabel a,char[] b, char[] c) {
-		if(Arrays.equals(b, c)){
-			a.setText("");	
-		}else {
-		a.setText("La contraseña no es igual");}
-	}
-*/
+
 }		
 
 		
