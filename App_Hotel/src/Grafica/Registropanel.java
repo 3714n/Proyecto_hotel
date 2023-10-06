@@ -24,22 +24,31 @@ import javax.swing.border.SoftBevelBorder;
 import com.toedter.calendar.JDateChooser;
 
 import Com.Proyecto_Hotel.ClienteBO.ClienteBO;
+import Com.Proyecto_Hotel.ClienteBO.DisponibilidadBO;
+import Com.Proyecto_Hotel.ClienteBO.HabitacionBO;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
 import Conexion.Conexion;
+import Habitaciones.G1_Panel;
 import Logica.Metodos;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.swing.JTable;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.event.AncestorEvent;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
 public class Registropanel extends JPanel {
 	private JTextField txtTotalPagado;
 	private JTextField txtValorAPagar;
 	private JTextField txtDiferencia;
-	private JTextField textField_5;
 	private JTextField txtNombre;
 	private JTextField txtCedula;
 	private JTextField txtCelular;
@@ -63,10 +72,15 @@ public class Registropanel extends JPanel {
 	private JTextField txtSelecPaque;
 	private JTextField txtInsertNoche;
 	private JTable table;
+	private JDateChooser cldFechaEntrada;
+	private JPanel PanelDispo;
+	private String mensaje = "";
 	
+	Datos_Clientes dcl = new Datos_Clientes();
 	ClienteBO cbo = new ClienteBO();
-
-	
+	DisponibilidadBO dp = new DisponibilidadBO();
+	HabitacionBO hbo = new HabitacionBO();
+	Datos_Habitacion dhb = new Datos_Habitacion();
 	public Registropanel() {
 		setBounds(168, 77, 964, 673);
 		setLayout(null);
@@ -180,14 +194,32 @@ public class Registropanel extends JPanel {
 		infReserva_2_1_1.add(infReserva_2_1_1_1_1);
 		
 		JLabel lblNewLabel_1_1_2_2_1_2 = new JLabel("Disponibilidad");
-		lblNewLabel_1_1_2_2_1_2.setBounds(12, 27, 79, 20);
+		lblNewLabel_1_1_2_2_1_2.setBounds(12, 11, 79, 20);
 		infReserva_2_1_1_1_1.add(lblNewLabel_1_1_2_2_1_2);
 		
+		PanelDispo = new JPanel();
+		PanelDispo.setBounds(101, 11, 102, 23);
+		infReserva_2_1_1_1_1.add(PanelDispo);
+		PanelDispo.setLayout(null);
+		
+		JLabel lblNewLabel_1_1_2_2_1_2_1_1 = new JLabel("Publicidad");
+		lblNewLabel_1_1_2_2_1_2_1_1.setBounds(12, 46, 79, 20);
+		infReserva_2_1_1_1_1.add(lblNewLabel_1_1_2_2_1_2_1_1);
+		
+		JComboBox cbxPublicidad = new JComboBox();
+		cbxPublicidad.setBounds(101, 45, 121, 23);
+		infReserva_2_1_1_1_1.add(cbxPublicidad);
+		cbxPublicidad.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar", "Istagram", "Facebook", "Youtube", "Recomendación", "Voz"}));
+		cbxPublicidad.setForeground(Color.WHITE);
+		cbxPublicidad.setBorder(null);
+		cbxPublicidad.setBackground(new Color(85, 147, 85));
+		
 		JLabel lblDisponibilidad = new JLabel("");
-		lblDisponibilidad.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		lblDisponibilidad.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		lblDisponibilidad.setBounds(101, 27, 100, 20);
+		lblDisponibilidad.setBounds(101, 8, 102, 23);
 		infReserva_2_1_1_1_1.add(lblDisponibilidad);
+		lblDisponibilidad.setBackground(new Color(0, 0, 0));
+		lblDisponibilidad.setBorder(null);
+		lblDisponibilidad.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		
 		JPanel infReserva_2_1_1_1_2 = new JPanel();
 		infReserva_2_1_1_1_2.setLayout(null);
@@ -243,27 +275,6 @@ public class Registropanel extends JPanel {
 		infReserva_2_1_1_1_1_1.setBackground(new Color(236, 244, 236));
 		infReserva_2_1_1_1_1_1.setBounds(255, 96, 231, 80);
 		infReserva_2_1_1.add(infReserva_2_1_1_1_1_1);
-		
-		JLabel lblNewLabel_1_1_2_2_1_2_1 = new JLabel("Procedencia");
-		lblNewLabel_1_1_2_2_1_2_1.setBounds(12, 12, 79, 20);
-		infReserva_2_1_1_1_1_1.add(lblNewLabel_1_1_2_2_1_2_1);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(98, 12, 100, 20);
-		infReserva_2_1_1_1_1_1.add(textField_5);
-		
-		JLabel lblNewLabel_1_1_2_2_1_2_1_1 = new JLabel("Publicidad");
-		lblNewLabel_1_1_2_2_1_2_1_1.setBounds(12, 48, 79, 20);
-		infReserva_2_1_1_1_1_1.add(lblNewLabel_1_1_2_2_1_2_1_1);
-		
-		JComboBox cbxPublicidad = new JComboBox();
-		cbxPublicidad.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar", "Istagram", "Facebook", "Youtube", "Recomendación", "Voz"}));
-		cbxPublicidad.setForeground(Color.WHITE);
-		cbxPublicidad.setBorder(null);
-		cbxPublicidad.setBackground(new Color(85, 147, 85));
-		cbxPublicidad.setBounds(98, 46, 121, 23);
-		infReserva_2_1_1_1_1_1.add(cbxPublicidad);
 		
 		txtInsertHabi = new JTextField();
 		txtInsertHabi.setForeground(new Color(255, 0, 0));
@@ -415,11 +426,37 @@ public class Registropanel extends JPanel {
 		lblNewLabel_1_1_2.setBounds(233, 0, 81, 50);
 		infReserva.add(lblNewLabel_1_1_2);
 		
-		JDateChooser cldFechaEntrada = new JDateChooser();
+		cldFechaEntrada = new JDateChooser();
+		cldFechaEntrada.addPropertyChangeListener(new PropertyChangeListener() {
+		    @Override
+		    public void propertyChange(PropertyChangeEvent evt) {
+		        if ("date".equals(evt.getPropertyName())) {
+		            // Aquí puedes ejecutar la consulta cada vez que cambie la fecha
+		            // Puedes obtener la fecha seleccionada con cldFechaEntrada.getDate()
+		            Date fechaSeleccionada = cldFechaEntrada.getDate();
+		            
+		            // Luego, obtén la cantidad de personas desde el txtCantidad
+		            String cantidadPersonas = txtCantidad.getText();
+		            
+		            // Verifica que tanto la fecha como la cantidad de personas no sean nulas o vacías
+		            if (fechaSeleccionada != null && !cantidadPersonas.isEmpty()) {
+		                // Convierte la cantidad de personas a un valor numérico (puedes manejar errores aquí)
+		                int cantidad = Integer.parseInt(cantidadPersonas);
+		                
+		                // Luego, ejecuta la consulta con ambos valores
+		                dp.Disponibilidad(cldFechaEntrada, lblDisponibilidad, txtCantidad, PanelDispo);
+		            }else {
+		            	PanelDispo.setBackground(Color.GRAY);
+		            	txtCantidad.setText("");
+		            }
+		        }
+		    }
+		});
 		cldFechaEntrada.setDateFormatString("y/MM/d");
 		cldFechaEntrada.setToolTipText("0");
 		cldFechaEntrada.setBounds(96, 15, 119, 20);
 		infReserva.add(cldFechaEntrada);
+		
 		
 		JDateChooser cldFechaSalida = new JDateChooser();
 		cldFechaSalida.setDateFormatString("y/MM/d");
@@ -431,6 +468,43 @@ public class Registropanel extends JPanel {
 		infReserva.add(lblNewLabel_1_1_2_1);
 		
 		txtCantidad = new JTextField();
+		txtCantidad.getDocument().addDocumentListener(new DocumentListener() {
+		    @Override
+		    public void insertUpdate(DocumentEvent e) {
+		        // Aquí puedes ejecutar la consulta cada vez que cambie el contenido del campo de texto
+		        // Puedes obtener la cantidad de personas desde txtCantidad.getText()
+		        String cantidadPersonas = txtCantidad.getText();
+		        
+		        // Verifica si ambos valores (fecha y cantidad) están disponibles
+		        Date fechaSeleccionada = cldFechaEntrada.getDate();
+		        if (fechaSeleccionada != null && !cantidadPersonas.isEmpty()) {
+		            // Convierte la cantidad de personas a un valor numérico (puedes manejar errores aquí)
+		            int cantidad = Integer.parseInt(cantidadPersonas);
+		            
+		            // Luego, ejecuta la consulta con la fecha y actualiza el color del JLabel
+		            dp.Disponibilidad(cldFechaEntrada, lblDisponibilidad, txtCantidad, PanelDispo);
+		            
+		        } else {
+		            // Si alguno de los valores no está presente, establece el color del JLabel en otro valor (por ejemplo, gris)
+		            PanelDispo.setBackground(Color.GRAY);
+		            txtCantidad.setText("");
+		        }
+		    }
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+		    // Implementa los otros métodos del DocumentListener según sea necesario
+		});
 		txtCantidad.setColumns(10);
 		txtCantidad.setBounds(508, 15, 59, 20);
 		infReserva.add(txtCantidad);
@@ -790,9 +864,9 @@ public class Registropanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				txtPago.setEnabled(false);
 			
-			String nombreReg = txtNombre.getText();				
+			//String nombreReg = txtNombre.getText();				
 			String cedulaReg = txtCedula.getText();				
-			String celularReg = txtCelular.getText(); 
+			/*String celularReg = txtCelular.getText(); 
 			String procedenciaReg = txtProcedencia.getText();
 			String cantidadReg = txtCantidad.getText();				
 			String nocheReg = txtCantidad.getText();				
@@ -802,9 +876,9 @@ public class Registropanel extends JPanel {
 			String totalPagadoReg = txtTotalPagado.getText();
 			String valorPagarReg = txtValorAPagar.getText();
 			String diferenciaReg = txtDiferencia.getText(); 
-			//String observacionReg = txtObservacion.getText();
+			//String observacionReg = txtObservacion.getText();*/
 				
-			String paqueteReg = cbxPaquete.getSelectedItem().toString();							
+			/*String paqueteReg = cbxPaquete.getSelectedItem().toString();							
 			String metodoPagoReg= cbxMetodoPago.getSelectedItem().toString();
 			String publicidadReg = cbxPublicidad.getSelectedItem().toString();				
 				
@@ -814,13 +888,36 @@ public class Registropanel extends JPanel {
 			String fechaSalida = ((JTextField) cldFechaReserva.getDateEditor().getUiComponent()).getText();	
 			Date fechaSalidaReg =cldFechaSalida.getDate();												
 			String fechaReserva = ((JTextField) cldFechaReserva.getDateEditor().getUiComponent()).getText();	
-			Date fechaReservaReg =cldFechaReserva.getDate();						
+			Date fechaReservaReg =cldFechaReserva.getDate();*/
+			
+			
+			Boolean G1Reg = rbG1.isSelected();
+			Boolean G2Reg = rbG2.isSelected();
+			Boolean G3Reg = rbG3.isSelected();
+			Boolean G4Reg = rbG4.isSelected();
+			Boolean G5Reg = rbG5.isSelected();
+			Boolean G6Reg = rbG6.isSelected();
+			Boolean G7Reg = rbG7.isSelected();
+			Boolean G8Reg = rbG8.isSelected();
+			Boolean G9Reg = rbG9.isSelected();
+			Boolean G10Reg = rbG10.isSelected();
+			Boolean C1Reg = rbC1.isSelected();
+			Boolean C2Reg = rbC2.isSelected();
+			Boolean C3Reg = rbC3.isSelected();
+			Boolean C4Reg = rbC4.isSelected();
+			Boolean C5Reg = rbC5.isSelected();
+			Boolean C6Reg = rbC6.isSelected();
+			Boolean A1Reg = rbA1.isSelected();
+			Boolean A2Reg = rbA2.isSelected();
+			Boolean A3Reg = rbA3.isSelected();
+			Boolean A4Reg = rbA4.isSelected();
+			Boolean A5Reg = rbA5.isSelected();
 								
-			ClienteBO cbo = new ClienteBO();
-			Datos_Clientes dcl = new Datos_Clientes();
-			String mensaje = "";
+			
+			
+			
 				
-			if(nombreReg.isEmpty()){Metodos.Casillavacia(nombreReg, txtInsertNombre);}
+			/*if(nombreReg.isEmpty()){Metodos.Casillavacia(nombreReg, txtInsertNombre);}
 			if(cedulaReg.isEmpty()) {Metodos.Casillavacia(cedulaReg, txtInsertCc);}
 			if(cantidadReg.isEmpty()) {Metodos.Casillavacia(cantidadReg, txtInsertCant);}
 			if(nocheReg.isEmpty()) {Metodos.Casillavacia(nocheReg, txtInsertNoche);}
@@ -847,8 +944,32 @@ public class Registropanel extends JPanel {
 				dcl.setHora_Entrada(txtHoraEntrada.getText());
 				dcl.setMetodo_pago(cbxMetodoPago.getSelectedItem().toString()); 
 				dcl.setPaquete(cbxPaquete.getSelectedItem().toString());
-				dcl.setPublicidad(cbxPublicidad.getSelectedItem().toString());
-			try {
+				dcl.setPublicidad(cbxPublicidad.getSelectedItem().toString());		*/		
+													
+				dhb.setG1(G1Reg);
+				dhb.setG2(G2Reg);
+				dhb.setG3(G3Reg);
+				dhb.setG4(G4Reg);
+				dhb.setG5(G5Reg);
+				dhb.setG6(G6Reg);
+				dhb.setG7(G7Reg);
+				dhb.setG8(G8Reg);
+				dhb.setG9(G9Reg);
+				dhb.setG10(G10Reg);
+				dhb.setC1(C1Reg);
+				dhb.setC2(C2Reg);
+				dhb.setC3(C3Reg);
+				dhb.setC4(C4Reg);
+				dhb.setC5(C5Reg);
+				dhb.setC6(C6Reg);
+				dhb.setA1(A1Reg);
+				dhb.setA2(A2Reg);
+				dhb.setA3(A3Reg);
+				dhb.setA4(A4Reg);
+				dhb.setA5(A5Reg);
+				dhb.setCedula(cedulaReg);
+				
+			/*try {
 				dcl.setTarifa(Integer.parseInt(txtTarifa.getText()));
 				dcl.setPago(Integer.parseInt(txtPago.getText()));
 				dcl.setTotal_Pagado(Integer.parseInt(txtTotalPagado.getText()));
@@ -860,9 +981,9 @@ public class Registropanel extends JPanel {
 			} catch (NumberFormatException e2) {
 				JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
 			}										 
-			mensaje = cbo.guardarCliente(dcl); 
-			cbo.mostrarClinte(table);
-					
+			cbo.guardarCliente(dcl); 
+			cbo.mostrarClinte(table);*/
+			hbo.guardarHabitacion(dhb); 		
 									 								 				
 			
 			Metodos.limpiarString(txtNombre);				
@@ -884,12 +1005,9 @@ public class Registropanel extends JPanel {
 			Metodos.limpiarFecha(cldFechaEntrada);
 			Metodos.limpiarFecha(cldFechaSalida);
 			Metodos.limpiarFecha(cldFechaReserva);
-			Metodos.limpiarString(txtPago);			 	
-			
-			//Metodos.limpiarString(txtObservacion);
-			
-			}
-			txtPago.setEnabled(true);
+			Metodos.limpiarString(txtPago);			 				
+			//Metodos.limpiarString(txtObservacion);			
+			//}									
 			}
 		});
 		

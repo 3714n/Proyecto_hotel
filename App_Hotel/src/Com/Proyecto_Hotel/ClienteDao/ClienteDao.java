@@ -180,7 +180,7 @@ public class ClienteDao {
 			
 	}
 	
-	private DefaultTableModel consultarRegistros(Connection con, Date fecha) {
+	private DefaultTableModel consultarFecha(Connection con, Date fecha) {
 	    DefaultTableModel modelo;
 	    String columnas[] = {"id", "nombre", "cedula", "celular", "procedencia", "fecha_entrada", "fecha_salida",
 	            "cantidad", "noches", "hora_entrada", "fecha_reserva", "tarifa", "pagos", "metodos_pagos",
@@ -232,10 +232,10 @@ public class ClienteDao {
 	}
 
 	// Llamar a este método para realizar la búsqueda y actualizar la tabla
-	public void buscar(Connection con, JDateChooser a, JTable tabla) {
+	public void buscarFecha(Connection con, JDateChooser a, JTable tabla) {
 		Date fechaSeleccionada = a.getDate();
 	   if (fechaSeleccionada != null) { 
-			DefaultTableModel modelo = consultarRegistros(con, fechaSeleccionada);
+			DefaultTableModel modelo = consultarFecha(con, fechaSeleccionada);
 		    tabla.setModel(modelo);
 		    
 	   }else {

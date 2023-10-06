@@ -12,12 +12,12 @@ import com.toedter.calendar.JDateChooser;
 import Com.Proyecto_Hotel.ClienteDao.ClienteDao;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
 import Conexion.Conexion;
-import Logica.Capasidad;
+
 
 public class ClienteBO {
 private String mensaje = "";
 private ClienteDao clienteDao= new ClienteDao(); 
-private Capasidad Capasidad = new Capasidad();
+
 Connection con = null;
 	
 	public String guardarCliente(Datos_Clientes dcl)  { 
@@ -95,9 +95,10 @@ Connection con = null;
 		}
 			
 		}
+	
 	public void buscarFecha (JDateChooser a, JTable tabla) {
 		con = Conexion.getConectar();
-		clienteDao.buscar(con, a, tabla);
+		clienteDao.buscarFecha(con, a, tabla);
 		try {
 			con.close();
 			System.out.println("Conexion cerrada");
@@ -117,6 +118,7 @@ Connection con = null;
 			System.out.println(ec.getMessage());
 		}
 	}
+	
 	public String ImportarCeldas ( JTextField a,Datos_Clientes dcl) {
 		con = Conexion.getConectar();
 		clienteDao.mostrarCeldas(con, a, dcl);
@@ -130,19 +132,5 @@ Connection con = null;
 		return mensaje;
 	}
 	
-	public String CapasidadFecha (Datos_Clientes dcl) {
-		con = Conexion.getConectar();
-		Capasidad.CapasidadHotel(con, dcl);
-	
-		try {
-			con.close();
-			System.out.println("Conexion cerrada");
-		} catch (Exception ec) {
-			System.out.println(ec.getMessage());
-		}
-		return mensaje;
-	}
-		
-		
 }
 	
