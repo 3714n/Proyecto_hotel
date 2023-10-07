@@ -10,10 +10,21 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class G1_Panel extends JPanel { 
+import javax.swing.JLabel;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-	public G1_Panel() {
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.border.BevelBorder;
+
+public class G3_Panel extends JPanel {
+
+	
+	public G3_Panel() {
 		setBounds(10, 11, 454, 578);
 		setLayout(null);
 		
@@ -34,7 +45,7 @@ public class G1_Panel extends JPanel {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("G1");
+		JLabel lblNewLabel_2 = new JLabel("G3");
 		lblNewLabel_2.setFont(new Font("Castellar", Font.BOLD, 40));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setBounds(177, 0, 60, 59);
@@ -337,3 +348,7 @@ public class G1_Panel extends JPanel {
 
 	}
 }
+
+
+
+	

@@ -864,9 +864,9 @@ public class Registropanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				txtPago.setEnabled(false);
 			
-			//String nombreReg = txtNombre.getText();				
+			String nombreReg = txtNombre.getText();				
 			String cedulaReg = txtCedula.getText();				
-			/*String celularReg = txtCelular.getText(); 
+			String celularReg = txtCelular.getText(); 
 			String procedenciaReg = txtProcedencia.getText();
 			String cantidadReg = txtCantidad.getText();				
 			String nocheReg = txtCantidad.getText();				
@@ -878,7 +878,7 @@ public class Registropanel extends JPanel {
 			String diferenciaReg = txtDiferencia.getText(); 
 			//String observacionReg = txtObservacion.getText();*/
 				
-			/*String paqueteReg = cbxPaquete.getSelectedItem().toString();							
+			String paqueteReg = cbxPaquete.getSelectedItem().toString();							
 			String metodoPagoReg= cbxMetodoPago.getSelectedItem().toString();
 			String publicidadReg = cbxPublicidad.getSelectedItem().toString();				
 				
@@ -888,7 +888,7 @@ public class Registropanel extends JPanel {
 			String fechaSalida = ((JTextField) cldFechaReserva.getDateEditor().getUiComponent()).getText();	
 			Date fechaSalidaReg =cldFechaSalida.getDate();												
 			String fechaReserva = ((JTextField) cldFechaReserva.getDateEditor().getUiComponent()).getText();	
-			Date fechaReservaReg =cldFechaReserva.getDate();*/
+			Date fechaReservaReg =cldFechaReserva.getDate();
 			
 			
 			Boolean G1Reg = rbG1.isSelected();
@@ -917,7 +917,7 @@ public class Registropanel extends JPanel {
 			
 			
 				
-			/*if(nombreReg.isEmpty()){Metodos.Casillavacia(nombreReg, txtInsertNombre);}
+			if(nombreReg.isEmpty()){Metodos.Casillavacia(nombreReg, txtInsertNombre);}
 			if(cedulaReg.isEmpty()) {Metodos.Casillavacia(cedulaReg, txtInsertCc);}
 			if(cantidadReg.isEmpty()) {Metodos.Casillavacia(cantidadReg, txtInsertCant);}
 			if(nocheReg.isEmpty()) {Metodos.Casillavacia(nocheReg, txtInsertNoche);}
@@ -944,7 +944,7 @@ public class Registropanel extends JPanel {
 				dcl.setHora_Entrada(txtHoraEntrada.getText());
 				dcl.setMetodo_pago(cbxMetodoPago.getSelectedItem().toString()); 
 				dcl.setPaquete(cbxPaquete.getSelectedItem().toString());
-				dcl.setPublicidad(cbxPublicidad.getSelectedItem().toString());		*/		
+				dcl.setPublicidad(cbxPublicidad.getSelectedItem().toString());			
 													
 				dhb.setG1(G1Reg);
 				dhb.setG2(G2Reg);
@@ -969,7 +969,7 @@ public class Registropanel extends JPanel {
 				dhb.setA5(A5Reg);
 				dhb.setCedula(cedulaReg);
 				
-			/*try {
+			try {
 				dcl.setTarifa(Integer.parseInt(txtTarifa.getText()));
 				dcl.setPago(Integer.parseInt(txtPago.getText()));
 				dcl.setTotal_Pagado(Integer.parseInt(txtTotalPagado.getText()));
@@ -982,7 +982,7 @@ public class Registropanel extends JPanel {
 				JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
 			}										 
 			cbo.guardarCliente(dcl); 
-			cbo.mostrarClinte(table);*/
+			cbo.mostrarClinte(table);
 			hbo.guardarHabitacion(dhb); 		
 									 								 				
 			
@@ -1007,7 +1007,7 @@ public class Registropanel extends JPanel {
 			Metodos.limpiarFecha(cldFechaReserva);
 			Metodos.limpiarString(txtPago);			 				
 			//Metodos.limpiarString(txtObservacion);			
-			//}									
+			}									
 			}
 		});
 		

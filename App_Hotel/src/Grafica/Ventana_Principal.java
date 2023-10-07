@@ -107,7 +107,7 @@ public class Ventana_Principal extends JFrame {
 		btnHabitacion.setBounds(22, 115, 135, 40);
 		Menu.add(btnHabitacion);
 		
-		JButton btnRegistro = new JButton("Registrar");
+		JButton btnRegistro = new JButton("Registrar"); 
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Registropanel registro = new Registropanel();

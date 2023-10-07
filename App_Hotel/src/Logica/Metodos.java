@@ -24,7 +24,7 @@ import com.toedter.calendar.JDateChooser;
 
 
 
-public class Metodos { 
+public class Metodos {  
 			
 	public static void Casillavacia(String v,JTextField b) {
 		if(v.isEmpty()) {
@@ -201,7 +201,17 @@ public class Metodos {
 	public static void limpiarRBoton (JRadioButton r) {
 		 r.setSelected(false);	
 	}
-
+	public static void mostrarHabitaciones(JPanel p, Container c) {
+		p.setSize(454, 578);
+		p.setLocation(0,0);
+		
+		c.removeAll();
+		c.setLayout(null);
+		c.add(p, BorderLayout.CENTER);
+		c.revalidate();
+		c.repaint();
+	
+	}
 }		
 
 		
