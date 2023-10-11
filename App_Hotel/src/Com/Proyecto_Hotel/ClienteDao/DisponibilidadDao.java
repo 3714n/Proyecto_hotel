@@ -20,7 +20,7 @@ public class DisponibilidadDao {
 	public void Consulta (Connection con, Date fecha, JLabel b, JTextField c, JPanel d){ 
 		PreparedStatement pds = null; 
 		ResultSet rst = null;
-		String consulta = "SELECT SUM(Cantidad) AS total_personas FROM DATOS_CLIENTE WHERE Fecha_entrada = ?";
+		String consulta = "SELECT SUM(Cantidad) AS total_personas FROM Habitaciones WHERE Fecha_entrada = ?";
 		String traerTexto = c.getText();
 		int PersonasRegistrada = 0;
 		int cantidadInt = Integer.parseInt(traerTexto);

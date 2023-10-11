@@ -22,14 +22,16 @@ public class Datos_Habitacion {
 	private Boolean A3;
 	private Boolean A4;
 	private Boolean A5;
-	
+	private java.util.Date FechaEntrada; 
+	private java.util.Date FechaSalida; 
 	private String Cedula;
 	public Datos_Habitacion() {
 		super();
 	}
 	public Datos_Habitacion(Boolean g1, Boolean g2, Boolean g3, Boolean g4, Boolean g5, Boolean g6, Boolean g7,
 			Boolean g8, Boolean g9, Boolean g10, Boolean c1, Boolean c2, Boolean c3, Boolean c4, Boolean c5, Boolean c6,
-			Boolean a1, Boolean a2, Boolean a3, Boolean a4, Boolean a5, String cedula) {
+			Boolean a1, Boolean a2, Boolean a3, Boolean a4, Boolean a5,java.util.Date fechaEntrada,
+			java.util.Date fechaSalida, String cedula) {
 		super();
 		G1 = g1;
 		G2 = g2;
@@ -52,6 +54,8 @@ public class Datos_Habitacion {
 		A3 = a3;
 		A4 = a4;
 		A5 = a5;
+		this.FechaEntrada = fechaEntrada;
+		this.FechaSalida = fechaSalida;
 		this.Cedula = cedula;
 	}
 	public Boolean getG1() {
@@ -116,6 +120,12 @@ public class Datos_Habitacion {
 	}
 	public Boolean getA5() {
 		return A5;
+	}
+	public java.util.Date getFechaEntrada() {
+		return FechaEntrada;
+	}
+	public java.util.Date getFechaSalida() {
+		return FechaSalida;
 	}
 	public String getCedula() {
 		return Cedula;
@@ -183,8 +193,25 @@ public class Datos_Habitacion {
 	public void setA5(Boolean a5) {
 		A5 = a5;
 	}
+	public void setFechaEntrada(java.util.Date fechaEntrada) {
+		this.FechaEntrada = fechaEntrada;
+	}
+	
+	public void setFechaSalida(java.util.Date fechaSalida) {
+		this.FechaSalida = fechaSalida;
+	}
 	public void setCedula(String cedula) {
 		this.Cedula = cedula;
 	}
+	@Override
+	public String toString() {
+		return "Datos_Habitacion [G1=" + G1 + ", G2=" + G2 + ", G3=" + G3 + ", G4=" + G4 + ", G5=" + G5 + ", G6=" + G6
+				+ ", G7=" + G7 + ", G8=" + G8 + ", G9=" + G9 + ", G10=" + G10 + ", C1=" + C1 + ", C2=" + C2 + ", C3="
+				+ C3 + ", C4=" + C4 + ", C5=" + C5 + ", C6=" + C6 + ", A1=" + A1 + ", A2=" + A2 + ", A3=" + A3 + ", A4="
+				+ A4 + ", A5=" + A5 + ", FechaEntrada=" + FechaEntrada + ", FechaSalida=" + FechaSalida + ", Cedula="
+				+ Cedula + "]";
+	}
+	
+	
 	
 }

@@ -18,6 +18,7 @@ import com.toedter.calendar.JDateChooser;
 import Com.Proyecto_Hotel.ClienteBO.ClienteBO;
 import Com.Proyecto_Hotel.ClienteDao.ClienteDao;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
 import Logica.Metodos;
 
 import javax.swing.JTable;
@@ -53,6 +54,7 @@ public class BusquedaCedulaPanel extends JPanel {
 	private Datos_Clientes dcl = new Datos_Clientes();
 	private Connection con =null;
 	private String mensaje;
+	private Datos_Habitacion dhb = new Datos_Habitacion();
 
 	public BusquedaCedulaPanel() {
 		setBounds(168, 77, 979, 673);
@@ -457,20 +459,20 @@ public class BusquedaCedulaPanel extends JPanel {
 		infGneral_1.add(lblFechaEntrada);
 		lblFechaEntrada.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		
-		JDateChooser cldFechaSalida = new JDateChooser();
-		cldFechaSalida.setBounds(95, 105, 122, 23);
-		infGneral_1.add(cldFechaSalida);
-		cldFechaSalida.setDateFormatString("y/MM/d");
+		JDateChooser cldFechaEntrada = new JDateChooser();
+		cldFechaEntrada.setBounds(95, 105, 122, 23);
+		infGneral_1.add(cldFechaEntrada);
+		cldFechaEntrada.setDateFormatString("y/MM/d");
 		
-		JLabel lblFechaEntrada_1 = new JLabel("Fecha Entrada");
+		JLabel lblFechaEntrada_1 = new JLabel("Fecha Salida");
 		lblFechaEntrada_1.setBounds(227, 105, 75, 29);
 		infGneral_1.add(lblFechaEntrada_1);
 		lblFechaEntrada_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		
-		JDateChooser cldFechaEntrada_1 = new JDateChooser();
-		cldFechaEntrada_1.setBounds(322, 105, 122, 23);
-		infGneral_1.add(cldFechaEntrada_1);
-		cldFechaEntrada_1.setDateFormatString("y/MM/d");
+		JDateChooser cldFechaSalida = new JDateChooser();
+		cldFechaSalida.setBounds(322, 105, 122, 23);
+		infGneral_1.add(cldFechaSalida);
+		cldFechaSalida.setDateFormatString("y/MM/d");
 		
 		JLabel lblNoches = new JLabel("Noches");
 		lblNoches.setBounds(334, 58, 52, 36);
@@ -539,8 +541,8 @@ public class BusquedaCedulaPanel extends JPanel {
 			dcl.setCedula(txtBuscarCedula.getText());
 			dcl.setCelular(txtCelular.getText()); 
 			dcl.setFecha_Reserva(cldFechaReserva.getDate());
-			dcl.setFecha_Entrada(cldFechaEntrada_1.getDate());
-			dcl.setFecha_Salida(cldFechaSalida.getDate());
+			dhb.setFechaSalida(cldFechaSalida.getDate());
+			dhb.setFechaEntrada(cldFechaEntrada.getDate());
 			dcl.setHora_Entrada(txtHoraEntrada.getText());
 			dcl.setMetodo_pago(cbxMetodoPago.getSelectedItem().toString()); 
 			dcl.setPaquete(cbxPaquete.getSelectedItem().toString()); 
@@ -553,9 +555,9 @@ public class BusquedaCedulaPanel extends JPanel {
 			dcl.setValor_pagar(Integer.parseInt(txtValorPagar.getText()));
 			dcl.setDiferencia(Integer.parseInt(txtDiferencia.getText()));
 			
-			mensaje = cbo.modificarCliente(dcl);
+			mensaje = cbo.modificarClientCedula(dcl);
 			JOptionPane.showMessageDialog(null, mensaje);
-		} catch (NumberFormatException | ClassNotFoundException e2) {
+		} catch (NumberFormatException e2) {
 			JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
 			}
 			Metodos.limpiarString(txtNombre);				
@@ -571,8 +573,8 @@ public class BusquedaCedulaPanel extends JPanel {
 			Metodos.limpiarString(txtNoches);
 			Metodos.limpiarCbx(cbxPaquete);							
 			Metodos.limpiarCbx(cbxMetodoPago);
-			Metodos.limpiarFecha(cldFechaEntrada_1);
 			Metodos.limpiarFecha(cldFechaSalida);
+			Metodos.limpiarFecha(cldFechaEntrada);
 			Metodos.limpiarFecha(cldFechaReserva);
 			Metodos.limpiarString(txtPago);	
 			
@@ -602,8 +604,8 @@ public class BusquedaCedulaPanel extends JPanel {
 				Metodos.limpiarString(txtNoches);
 				Metodos.limpiarCbx(cbxPaquete);							
 				Metodos.limpiarCbx(cbxMetodoPago);
-				Metodos.limpiarFecha(cldFechaEntrada_1);
 				Metodos.limpiarFecha(cldFechaSalida);
+				Metodos.limpiarFecha(cldFechaEntrada);
 				Metodos.limpiarFecha(cldFechaReserva);
 				Metodos.limpiarString(txtPago);			
 			}
@@ -634,8 +636,8 @@ public class BusquedaCedulaPanel extends JPanel {
 				Metodos.limpiarString(txtNoches);
 				Metodos.limpiarCbx(cbxPaquete);							
 				Metodos.limpiarCbx(cbxMetodoPago);
-				Metodos.limpiarFecha(cldFechaEntrada_1);
 				Metodos.limpiarFecha(cldFechaSalida);
+				Metodos.limpiarFecha(cldFechaEntrada);
 				Metodos.limpiarFecha(cldFechaReserva);
 				Metodos.limpiarString(txtPago);			
 			}
@@ -666,7 +668,8 @@ public class BusquedaCedulaPanel extends JPanel {
 				cbo.buscarCedula(txtBuscarCedula, table);
 				ClienteBO cbo = new ClienteBO();
 				 Datos_Clientes dcl = new Datos_Clientes();
-				 String mensaje = cbo.ImportarCeldas(txtBuscarCedula,dcl);
+				 Datos_Habitacion dhb = new Datos_Habitacion();
+				 String mensaje = cbo.ImportarCeldas(txtBuscarCedula,dcl,dhb);
 				 
 				txtNombre.setText(dcl.getNombre());				
 				txtCelular.setText(dcl.getCelular());								 				
@@ -683,8 +686,8 @@ public class BusquedaCedulaPanel extends JPanel {
 				cbxPaquete.setSelectedItem(dcl.getPaquete());							
 				cbxMetodoPago.setSelectedItem(dcl.getMetodo_pago());
 						
-				cldFechaEntrada_1.setDate(dcl.getFecha_Entrada());	
-				cldFechaSalida.setDate(dcl.getFecha_Salida());	
+				cldFechaSalida.setDate(dhb.getFechaEntrada());	
+				cldFechaEntrada.setDate(dhb.getFechaSalida());	
 				cldFechaReserva.setDate(dcl.getFecha_Reserva());
 				 
 				 

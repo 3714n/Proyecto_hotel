@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JDateChooser;
 
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
 import Conexion.Conexion;
 import Logica.Metodos;
 
@@ -27,11 +28,11 @@ public class ClienteDao {
 	
 	public String guardarCliente(Connection con,Datos_Clientes dcl) {
 		PreparedStatement pst;
-		String sql = "INSERT INTO DATOS_CLIENTE(nombre, cedula, celular, procedencia,"
-				+ "fecha_entrada,fecha_salida,cantidad,noches,hora_entrada,"
-				+ "fecha_Reserva, tarifa, pagos, metodos_pagos,total_pagos,valor_pagar,"
-				+ "diferencia,publicidad,paquete)"
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO DATOS_CLIENTE(Nombre, Cedula, Celular, Procedencia,"
+				+ "Cantidad, Noches, Hora_entrada,"
+				+ "Fecha_Reserva, Tarifa, Pagos, Metodos_pagos,Total_pagos,Valor_pagar,"
+				+ "Diferencia,Publicidad,Paquete)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			pst = con.prepareStatement(sql);
@@ -40,21 +41,19 @@ public class ClienteDao {
 			pst.setString(1,dcl.getNombre());			
 			pst.setString(2,dcl.getCedula());			
 			pst.setString(3,dcl.getCelular());			
-			pst.setString(4,dcl.getProcedencia());		
-			pst.setTimestamp(5,new java.sql.Timestamp(dcl.getFecha_Entrada().getTime()));		
-			pst.setTimestamp(6,new java.sql.Timestamp(dcl.getFecha_Salida().getTime()));			
-			pst.setInt(7,dcl.getCantidad());			
-			pst.setInt(8,dcl.getNoche());		
-			pst.setString(9,dcl.getHora_Entrada());
-			pst.setTimestamp(10,new java.sql.Timestamp(dcl.getFecha_Reserva().getTime()));		
-			pst.setInt(11,dcl.getTarifa());		
-			pst.setInt(12,dcl.getPago());			
-			pst.setString(13,dcl.getMetodo_pago());
-			pst.setInt(14, dcl.getTotal_Pagado());
-			pst.setInt(15, dcl.getValor_pagar());
-			pst.setInt(16, dcl.getDiferencia());
-			pst.setString(17, dcl.getPublicidad());
-			pst.setString(18,dcl.getPaquete());
+			pst.setString(4,dcl.getProcedencia());				
+			pst.setInt(5,dcl.getCantidad());			
+			pst.setInt(6,dcl.getNoche());		
+			pst.setString(7,dcl.getHora_Entrada());
+			pst.setTimestamp(8,new java.sql.Timestamp(dcl.getFecha_Reserva().getTime()));		
+			pst.setInt(9,dcl.getTarifa());		
+			pst.setInt(10,dcl.getPago());			
+			pst.setString(11,dcl.getMetodo_pago());
+			pst.setInt(12, dcl.getTotal_Pagado());
+			pst.setInt(13, dcl.getValor_pagar());
+			pst.setInt(14, dcl.getDiferencia());
+			pst.setString(15, dcl.getPublicidad());
+			pst.setString(16,dcl.getPaquete());
 			
 			mensaje  ="Guardado correctamente";
 			JOptionPane.showMessageDialog(null, "Guardado correctamente");
@@ -72,33 +71,31 @@ public class ClienteDao {
 		return mensaje;	
 	}
 	
-	public String modificarCliente(Connection con,Datos_Clientes dcl) {
+	public String modificarClienteCedula(Connection con,Datos_Clientes dcl) {
 		PreparedStatement pst = null;
-		String sql = "UPDATE DATOS_CLIENTE SET nombre = ?, celular=?,"
-				+ "fecha_entrada = ?,fecha_salida = ?,cantidad = ?,noches = ?,hora_entrada = ?,"
-				+ "fecha_Reserva = ?, tarifa = ?, pagos = ?, metodos_pagos = ?,total_pagos = ?,valor_pagar = ?,"
-				+ "diferencia = ?, paquete = ?"
-				+ "WHERE cedula =?";
+		String sql = "UPDATE DATOS_CLIENTE SET Nombre = ?, Celular=?,"
+				+ "Cantidad = ?,Noches = ?,Hora_entrada = ?,"
+				+ "Fecha_Reserva = ?, Tarifa = ?, Pagos = ?, Metodos_pagos = ?,Total_pagos = ?,Valor_pagar = ?,"
+				+ "Diferencia = ?, Paquete = ?"
+				+ "WHERE Cedula =?";
 			
 		try {
 			pst = con.prepareStatement(sql);
 			
 			pst.setString(1,dcl.getNombre());			
 			pst.setString(2,dcl.getCelular());
-			pst.setTimestamp(3,new java.sql.Timestamp(dcl.getFecha_Entrada().getTime()));
-			pst.setTimestamp(4,new java.sql.Timestamp(dcl.getFecha_Salida().getTime()));
-			pst.setInt(5,dcl.getCantidad());
-			pst.setInt(6,dcl.getNoche());
-			pst.setString(7,dcl.getHora_Entrada());
-			pst.setTimestamp(8,new java.sql.Timestamp(dcl.getFecha_Entrada().getTime()));
-			pst.setInt(9,dcl.getTarifa());
-			pst.setInt(10,dcl.getPago());
-			pst.setString(11,dcl.getMetodo_pago());
-			pst.setInt(12, dcl.getTotal_Pagado());
-			pst.setInt(13, dcl.getValor_pagar());
-			pst.setInt(14, dcl.getDiferencia());
-			pst.setString(15,dcl.getPaquete());
-			pst.setString(16, dcl.getCedula());
+			pst.setInt(3,dcl.getCantidad());
+			pst.setInt(4,dcl.getNoche());
+			pst.setString(5,dcl.getHora_Entrada());
+			pst.setTimestamp(6,new java.sql.Timestamp(dcl.getFecha_Reserva().getTime()));
+			pst.setInt(7,dcl.getTarifa());
+			pst.setInt(8,dcl.getPago());
+			pst.setString(9,dcl.getMetodo_pago());
+			pst.setInt(10, dcl.getTotal_Pagado());
+			pst.setInt(11, dcl.getValor_pagar());
+			pst.setInt(12, dcl.getDiferencia());
+			pst.setString(13,dcl.getPaquete());
+			pst.setString(14,dcl.getCedula());
 			mensaje  = "Actualizado correctamente";
 			pst.execute();
 			con.commit();
@@ -134,16 +131,18 @@ public class ClienteDao {
 		return mensaje;	
 	}
 	
-	public void mostrarClente(Connection con, JTable tabla) {
+	public void mostrarCliente(Connection con, JTable tabla) {
 		DefaultTableModel modelo;
-		String columnas[] = {"id", "nombre", "cedula", "celular", "procedencia", "fecha_entrada", "fecha_salida",
+		String columnas[] = {"id", "nombre", "cedula", "celular", "procedencia", "FechaEntrada", "FechaSalida",
 								"cantidad", "noches", "hora_entrada", "fecha_reserva", "tarifa", "pagos", "metodos_pagos",
 								"total_pagos", "valor_pagar", "diferencia", "publicidad", "paquete"};
 		modelo =new DefaultTableModel(null,columnas);
-		String sql = "SELECT ID, Nombre, Cedula, celular, procedencia,"
-				+ "				fecha_entrada,fecha_salida,cantidad,noches,hora_entrada,"
-				+ "				fecha_Reserva, tarifa, pagos, metodos_pagos,total_pagos,valor_pagar,"
-				+ "				diferencia,publicidad,paquete FROM DATOS_CLIENTE ORDER BY ID";
+		String sql = "SELECT c.ID, c.Nombre, c.Cedula, c.celular, c.procedencia, h.FechaEntrada, h.FechaSalida,"
+	            + " c.cantidad, c.noches, c.hora_entrada, c.fecha_Reserva, c.tarifa, c.pagos, c.metodos_pagos,"
+	            + " c.total_pagos, c.valor_pagar, c.diferencia, c.publicidad, c.paquete "
+	            + " FROM DATOS_CLIENTE c "
+	            + " INNER JOIN Habitaciones h ON c.Cedula = h.Cedula "
+	            + " ORDER BY c.ID";
 		String [] filas = new String [19];
 		Arrays.fill(filas, ""); 
 		Statement st =null;
@@ -182,7 +181,7 @@ public class ClienteDao {
 	
 	private DefaultTableModel consultarFecha(Connection con, Date fecha) {
 	    DefaultTableModel modelo;
-	    String columnas[] = {"id", "nombre", "cedula", "celular", "procedencia", "fecha_entrada", "fecha_salida",
+	    String columnas[] = {"id", "nombre", "cedula", "celular", "procedencia",
 	            "cantidad", "noches", "hora_entrada", "fecha_reserva", "tarifa", "pagos", "metodos_pagos",
 	            "total_pagos", "valor_pagar", "diferencia", "publicidad", "paquete"};
 	    modelo = new DefaultTableModel(null, columnas);
@@ -191,28 +190,29 @@ public class ClienteDao {
 	    ResultSet rs = null;
 
 	    try {
-	        // Prepara la consulta SQL con un parámetro para la fecha
-	        String sql = "SELECT id, nombre, cedula, celular, procedencia,"
-	                + " fecha_entrada, fecha_salida, cantidad, noches, hora_entrada,"
-	                + " fecha_Reserva, tarifa, pagos, metodos_pagos, total_pagos, valor_pagar,"
-	                + " diferencia, publicidad, paquete FROM DATOS_CLIENTE WHERE FECHA_ENTRADA = ?";
+	        // Prepara la consulta SQL para seleccionar datos de la tabla Habitaciones
+	        String sql = "SELECT dc.id, dc.nombre, dc.cedula, dc.celular, dc.procedencia,"
+	                + " dc.cantidad, dc.noches, dc.hora_entrada, dc.fecha_reserva, dc.tarifa, dc.pagos, dc.metodos_pagos,"
+	                + " dc.total_pagos, dc.valor_pagar, dc.diferencia, dc.publicidad, dc.paquete"
+	                + " FROM DATOS_CLIENTE dc"
+	                + " INNER JOIN Habitaciones h ON dc.Cedula = h.Cedula"
+	                + " WHERE ? BETWEEN h.FechaEntrada AND h.FechaSalida";
+
 	        ps = con.prepareStatement(sql);
 	        ps.setDate(1, new java.sql.Date(fecha.getTime())); // Convierte la fecha de Java util a Java SQL
 
 	        rs = ps.executeQuery();
-	        
-	        String filas[] = new String[19];
-	        
-	        
-	        	 while (rs.next()) {
-	 	            for (int i = 0; i < 19; i++) {
-	 	                filas[i] = rs.getString(i + 1);
-	 	            }
-	 	            modelo.addRow(filas);
-	 	        }		
-	       
+
+	        String filas[] = new String[17];
+
+	        while (rs.next()) {
+	            for (int i = 0; i < 17; i++) {
+	                filas[i] = rs.getString(columnas[i]);
+	            }
+	            modelo.addRow(filas);
+	        }
 	    } catch (SQLException e) {
-	    	System.out.println(e.getMessage()); // Manejo básico de errores, puedes personalizarlo.
+	        System.out.println(e.getMessage()); // Manejo básico de errores, puedes personalizarlo.
 	    } finally {
 	        try {
 	            if (rs != null) {
@@ -221,10 +221,9 @@ public class ClienteDao {
 	            }
 	            if (ps != null) {
 	                ps.close();
-	                System.out.println("Conexion cerrada");
 	            }
 	        } catch (SQLException e) {
-	        	System.out.println(e.getMessage()); // Manejo básico de errores, puedes personalizarlo.
+	            System.out.println(e.getMessage()); // Manejo básico de errores, puedes personalizarlo.
 	        }
 	    }
 
@@ -245,7 +244,7 @@ public class ClienteDao {
 	 
 	private DefaultTableModel consultarRegistros(Connection con, String cedula) {
 	    DefaultTableModel modelo;
-	    String columnas[] = {"ID", "Nombre", "Cedula", "Celular", "Procedencia", "Entrada", "Salida", 
+	    String columnas[] = {"ID", "Nombre", "Cedula", "Celular", "Procedencia",  
 	    		"Cantidad", "Noches", "Hora Entrada", "Fecha Reserva", "Tarifa", "Pagos", "Metodos Pagos ",
 	    		"Total Pagos", "Valor a pagar", "Diferencia ", "Publicidad", "Paquetes"};
 	    modelo = new DefaultTableModel(null, columnas);
@@ -256,19 +255,19 @@ public class ClienteDao {
 	    try {
 	        // Prepara la consulta SQL con un parámetro para la fecha
 	        String sql = "SELECT ID, Nombre, Cedula, Celular,"
-	                + " Fecha_entrada, Fecha_salida, Cantidad, Noches, Hora_entrada,"
-	                + " Fecha_Reserva, Tarifa, Pagos, Metodos_pagos, Total_pagos, Valor_pagar,"
+	                + " Cantidad, Noches, Hora_entrada,"
+	                + " Fecha_reserva, Tarifa, Pagos, Metodos_pagos, Total_pagos, Valor_pagar,"
 	                + " Diferencia, Paquete FROM DATOS_CLIENTE WHERE CEDULA = ?";
 	        ps = con.prepareStatement(sql);
 	        ps.setString(1, new String(cedula.toString())); // Convierte la CEDULA	 de Java util a Java SQL
 
 	        rs = ps.executeQuery();
 	        
-	        String filas[] = new String[17];
+	        String filas[] = new String[15];
 	        
 	        
 	        	 while (rs.next()) {
-	 	            for (int i = 0; i < 17; i++) {
+	 	            for (int i = 0; i < 15; i++) {
 	 	                filas[i] = rs.getString(i + 1);
 	 	            }
 	 	            modelo.addRow(filas);
@@ -305,35 +304,37 @@ public class ClienteDao {
 	   }
 	}
 	
-	
-	public void mostrarCeldas(Connection con, JTextField a, Datos_Clientes dcl) {
+	public void mostrarCeldas(Connection con, JTextField a, Datos_Clientes dcl, Datos_Habitacion hbd) {
 	    PreparedStatement pst = null;
 	    ResultSet rs = null;
 
 	    try {
-	        String sql = "SELECT * FROM DATOS_CLIENTE WHERE CEDULA = ?";
+	        String sql = "SELECT DC.*, H.FechaEntrada, H.FechaSalida " +
+                    "FROM DATOS_CLIENTE DC " +
+                    "LEFT JOIN Habitaciones H ON DC.CEDULA = H.CEDULA " +
+                    "WHERE DC.CEDULA = ?";
 	        pst = con.prepareStatement(sql);
 	        pst.setString(1, a.getText()); // Establece la cédula como parámetro
 
 	        rs = pst.executeQuery();
 
 	        if (rs.next()) {
-	            dcl.setNombre(rs.getString("nombre"));
-	            dcl.setCedula(rs.getString("cedula"));
-	            dcl.setCelular(rs.getString("celular"));
-	            dcl.setFecha_Entrada(rs.getTimestamp("fecha_entrada"));
-	            dcl.setFecha_Salida(rs.getTimestamp("fecha_salida"));
-	            dcl.setCantidad(rs.getInt("cantidad"));
-	            dcl.setPago(rs.getInt("pagos"));
-	            dcl.setNoche(rs.getInt("noches"));
-	            dcl.setHora_Entrada(rs.getString("hora_entrada"));
-	            dcl.setFecha_Reserva(rs.getTimestamp("fecha_Reserva"));
-	            dcl.setTarifa(rs.getInt("tarifa"));
-	            dcl.setMetodo_pago(rs.getString("metodos_pagos"));
-	            dcl.setTotal_Pagado(rs.getInt("total_pagos"));
-	            dcl.setValor_pagar(rs.getInt("valor_pagar"));
-	            dcl.setDiferencia(rs.getInt("diferencia"));
-	            dcl.setPaquete(rs.getString("paquete"));
+	            dcl.setNombre(rs.getString("Nombre"));
+	            dcl.setCedula(rs.getString("Cedula"));
+	            dcl.setCelular(rs.getString("Celular"));
+	            hbd.setFechaEntrada(rs.getTimestamp("FechaEntrada"));
+	            hbd.setFechaSalida(rs.getTimestamp("FechaSalida"));
+	            dcl.setCantidad(rs.getInt("Cantidad"));
+	            dcl.setPago(rs.getInt("Pagos"));
+	            dcl.setNoche(rs.getInt("Noches"));
+	            dcl.setHora_Entrada(rs.getString("Hora_entrada"));
+	            dcl.setFecha_Reserva(rs.getTimestamp("Fecha_Reserva"));
+	            dcl.setTarifa(rs.getInt("Tarifa"));
+	            dcl.setMetodo_pago(rs.getString("Metodos_pagos"));
+	            dcl.setTotal_Pagado(rs.getInt("Total_pagos"));
+	            dcl.setValor_pagar(rs.getInt("Valor_pagar"));
+	            dcl.setDiferencia(rs.getInt("Diferencia"));
+	            dcl.setPaquete(rs.getString("Paquete"));
 	        } else {
 	            // Si no se encontró ningún registro con la cédula proporcionada, puedes manejarlo aquí.
 	            // Por ejemplo, mostrar un mensaje de error o establecer valores predeterminados en el objeto Datos_Clientes.

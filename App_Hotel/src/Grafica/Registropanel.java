@@ -260,7 +260,7 @@ public class Registropanel extends JPanel {
 				
 			
 				
-				cbo.mostrarClinte(table); 
+				cbo.mostrarClinteRegistrar(table); 
 				
 			}
 			public void ancestorMoved(AncestorEvent event) {
@@ -939,8 +939,7 @@ public class Registropanel extends JPanel {
 				dcl.setCelular(txtCelular.getText()); 
 				dcl.setProcedencia(txtProcedencia.getText());
 				dcl.setFecha_Reserva(fechaReservaReg);
-				dcl.setFecha_Entrada(fechaEntradaReg);
-				dcl.setFecha_Salida(fechaSalidaReg);
+				
 				dcl.setHora_Entrada(txtHoraEntrada.getText());
 				dcl.setMetodo_pago(cbxMetodoPago.getSelectedItem().toString()); 
 				dcl.setPaquete(cbxPaquete.getSelectedItem().toString());
@@ -968,6 +967,8 @@ public class Registropanel extends JPanel {
 				dhb.setA4(A4Reg);
 				dhb.setA5(A5Reg);
 				dhb.setCedula(cedulaReg);
+				dhb.setFechaEntrada(fechaEntradaReg);
+				dhb.setFechaSalida(fechaSalidaReg);
 				
 			try {
 				dcl.setTarifa(Integer.parseInt(txtTarifa.getText()));
@@ -982,7 +983,7 @@ public class Registropanel extends JPanel {
 				JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
 			}										 
 			cbo.guardarCliente(dcl); 
-			cbo.mostrarClinte(table);
+			cbo.mostrarClinteRegistrar(table);
 			hbo.guardarHabitacion(dhb); 		
 									 								 				
 			

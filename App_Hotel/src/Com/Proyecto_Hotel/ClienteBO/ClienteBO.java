@@ -10,13 +10,15 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import Com.Proyecto_Hotel.ClienteDao.ClienteDao;
+import Com.Proyecto_Hotel.ClienteDao.HabitacionDao;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
 import Conexion.Conexion;
 
 
 public class ClienteBO {
 private String mensaje = "";
-private ClienteDao clienteDao= new ClienteDao(); 
+private ClienteDao clienteDao= new ClienteDao();
 
 Connection con = null;
 	
@@ -40,11 +42,11 @@ Connection con = null;
 	return mensaje;
 	}
 	
-	public String modificarCliente(Datos_Clientes dcl) throws ClassNotFoundException {
+	public String modificarClientCedula(Datos_Clientes dcl){
 		
 		con = Conexion.getConectar();
 		try {
-			mensaje = clienteDao.modificarCliente(con,dcl);
+			mensaje = clienteDao.modificarClienteCedula(con,dcl);
 			con.rollback();
 		} catch (Exception e) {
 			mensaje = mensaje + " "+ e.getMessage();
@@ -82,9 +84,9 @@ Connection con = null;
 	return mensaje;		
 		}
 	
-	public void mostrarClinte(JTable table) {
+	public void mostrarClinteRegistrar(JTable table) {
 		con = Conexion.getConectar();
-		clienteDao.mostrarClente(con, table);
+		clienteDao.mostrarCliente(con, table);
 		
 		try {
 		
@@ -119,9 +121,9 @@ Connection con = null;
 		}
 	}
 	
-	public String ImportarCeldas ( JTextField a,Datos_Clientes dcl) {
+	public String ImportarCeldas ( JTextField a,Datos_Clientes dcl, Datos_Habitacion dhb) {
 		con = Conexion.getConectar();
-		clienteDao.mostrarCeldas(con, a, dcl);
+		clienteDao.mostrarCeldas(con, a, dcl, dhb);
 	
 		try {
 			con.close();

@@ -14,8 +14,7 @@ public class Datos_Clientes {
 	private int pago; 
 	private String metodo_pago;
 	private int total_Pagado; 
-	private java.util.Date fecha_Entrada; 
-	private java.util.Date fecha_Salida; 
+	
 	private int cantidad; 
 	private int noche;
 	private String hora_Entrada;
@@ -32,8 +31,7 @@ public class Datos_Clientes {
 		
 	}
 	public Datos_Clientes(String nombre, String cedula, String celular, String procedencia, java.util.Date fecha_Reserva,
-			int tarifa, int pago, String metodo_pago, int total_Pagado, java.util.Date fecha_Entrada,
-			java.util.Date fecha_Salida, int cantidad, int noche, String hora_Entrada, int valor_pagar, int diferencia,
+			int tarifa, int pago, String metodo_pago, int total_Pagado,  int cantidad, int noche, String hora_Entrada, int valor_pagar, int diferencia,
 			String paquete, String publicidad, String observacion,int getId,
 			String selecionarHabitacion) {
 		this.nombre = nombre;
@@ -45,8 +43,7 @@ public class Datos_Clientes {
 		this.pago = pago;
 		this.metodo_pago = metodo_pago;
 		this.total_Pagado = total_Pagado;
-		this.fecha_Entrada = fecha_Entrada;
-		this.fecha_Salida = fecha_Salida;
+		
 		this.cantidad = cantidad;
 		this.noche = noche;
 		this.hora_Entrada = hora_Entrada;
@@ -112,18 +109,7 @@ public class Datos_Clientes {
 	public void setTotal_Pagado(int total_Pagado) {
 		this.total_Pagado = total_Pagado;
 	}
-	public java.util.Date getFecha_Entrada() {
-		return fecha_Entrada;
-	}
-	public void setFecha_Entrada(java.util.Date fecha_Entrada) {
-		this.fecha_Entrada = fecha_Entrada;
-	}
-	public java.util.Date getFecha_Salida() {
-		return fecha_Salida;
-	}
-	public void setFecha_Salida(java.util.Date fecha_Salida) {
-		this.fecha_Salida = fecha_Salida;
-	}
+	
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -192,7 +178,6 @@ public class Datos_Clientes {
 				.append(celular).append(", procedencia=").append(procedencia).append(", fecha_Reserva=")
 				.append(fecha_Reserva).append(", tarifa=").append(tarifa).append(", pago=").append(pago)
 				.append(", metodo_pago=").append(metodo_pago).append(", total_Pagado=").append(total_Pagado)
-				.append(", fecha_Entrada=").append(fecha_Entrada).append(", fecha_Salida=").append(fecha_Salida)
 				.append(", cantidad=").append(cantidad).append(", noche=").append(noche).append(", hora_Entrada=")
 				.append(hora_Entrada).append(", valor_pagar=").append(valor_pagar).append(", diferencia=")
 				.append(diferencia).append(", paquete=").append(paquete).append(", publicidad=")
