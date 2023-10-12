@@ -32,7 +32,7 @@ public class HabitacionBO {
 		
 		return mensaje;
 	}
-	public String modificarCliente (Datos_Habitacion dhb){
+	public String modificarHabitacion (Datos_Habitacion dhb){
 		
 		con = Conexion.getConectar();
 		try {

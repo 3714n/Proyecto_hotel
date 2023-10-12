@@ -76,13 +76,13 @@ public class ClienteDao {
 		String sql = "UPDATE DATOS_CLIENTE SET Nombre = ?, Celular=?,"
 				+ "Cantidad = ?,Noches = ?,Hora_entrada = ?,"
 				+ "Fecha_Reserva = ?, Tarifa = ?, Pagos = ?, Metodos_pagos = ?,Total_pagos = ?,Valor_pagar = ?,"
-				+ "Diferencia = ?, Paquete = ?"
+				+ "Diferencia = ?, Paquete = ? "
 				+ "WHERE Cedula =?";
 			
 		try {
 			pst = con.prepareStatement(sql);
 			
-			pst.setString(1,dcl.getNombre());			
+			pst.setString(1,dcl.getNombre());
 			pst.setString(2,dcl.getCelular());
 			pst.setInt(3,dcl.getCantidad());
 			pst.setInt(4,dcl.getNoche());
@@ -96,6 +96,8 @@ public class ClienteDao {
 			pst.setInt(12, dcl.getDiferencia());
 			pst.setString(13,dcl.getPaquete());
 			pst.setString(14,dcl.getCedula());
+			
+			
 			mensaje  = "Actualizado correctamente";
 			pst.execute();
 			con.commit();
@@ -309,8 +311,8 @@ public class ClienteDao {
 	    ResultSet rs = null;
 
 	    try {
-	        String sql = "SELECT DC.*, H.FechaEntrada, H.FechaSalida " +
-                    "FROM DATOS_CLIENTE DC " +
+	        String sql = "SELECT DC.*, H.*"+
+	                "FROM DATOS_CLIENTE DC " +
                     "LEFT JOIN Habitaciones H ON DC.CEDULA = H.CEDULA " +
                     "WHERE DC.CEDULA = ?";
 	        pst = con.prepareStatement(sql);
@@ -335,6 +337,31 @@ public class ClienteDao {
 	            dcl.setValor_pagar(rs.getInt("Valor_pagar"));
 	            dcl.setDiferencia(rs.getInt("Diferencia"));
 	            dcl.setPaquete(rs.getString("Paquete"));
+	            
+	            
+	            hbd.setA1(rs.getBoolean("A1"));
+	            hbd.setA2(rs.getBoolean("A2"));
+	            hbd.setA3(rs.getBoolean("A3"));
+	            hbd.setA4(rs.getBoolean("A4"));
+	            hbd.setA5(rs.getBoolean("A5"));
+	            hbd.setC1(rs.getBoolean("C1"));
+	            hbd.setC2(rs.getBoolean("C2"));
+	            hbd.setC3(rs.getBoolean("C3"));
+	            hbd.setC4(rs.getBoolean("C4"));
+	            hbd.setC5(rs.getBoolean("C5"));
+	            hbd.setC6(rs.getBoolean("C6"));
+	            hbd.setG1(rs.getBoolean("G1"));
+	            hbd.setG2(rs.getBoolean("G2"));
+	            hbd.setG3(rs.getBoolean("G3"));
+	            hbd.setG4(rs.getBoolean("G4"));
+	            hbd.setG5(rs.getBoolean("G5"));
+	            hbd.setG6(rs.getBoolean("G6"));
+	            hbd.setG7(rs.getBoolean("G7"));
+	            hbd.setG8(rs.getBoolean("G8"));
+	            hbd.setG9(rs.getBoolean("G9"));
+	            hbd.setG10(rs.getBoolean("G10"));
+        
+	            
 	        } else {
 	            // Si no se encontró ningún registro con la cédula proporcionada, puedes manejarlo aquí.
 	            // Por ejemplo, mostrar un mensaje de error o establecer valores predeterminados en el objeto Datos_Clientes.
