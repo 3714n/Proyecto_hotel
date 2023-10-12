@@ -30,9 +30,9 @@ public class BusquedaFechaPanel extends JPanel {
 	private ClienteDao Cdo = new ClienteDao();
 	private Connection con =null; 
 	private JTable table;
-	public void mostrarClientes () {
-		Cbo.mostrarClinte(table);
-	} 
+	//public void mostrarClientes () {
+		//Cbo.mostrarCliente(table);
+	//} 
 	
 	/*public void BuscarFechas () {
 		Cbo.buscarFecha(cldFechaBusqueda, table);
@@ -128,9 +128,9 @@ public class BusquedaFechaPanel extends JPanel {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//mostrarClientes();				
+								
 				Cbo.buscarFecha(cldFechaBusqueda, table);
-				//Metodos.limpiar(cldFechaBusqueda);
+				
 				
 			}
 		});

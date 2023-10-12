@@ -193,14 +193,16 @@ public class Registropanel extends JPanel {
 		infReserva_2_1_1_1_1.setBounds(255, 12, 231, 80);
 		infReserva_2_1_1.add(infReserva_2_1_1_1_1);
 		
+		JLabel lblDisponibilidad = new JLabel("");
+		lblDisponibilidad.setBounds(101, 11, 91, 20);
+		infReserva_2_1_1_1_1.add(lblDisponibilidad);
+		lblDisponibilidad.setBackground(new Color(0, 0, 0));
+		lblDisponibilidad.setBorder(null);
+		lblDisponibilidad.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		
 		JLabel lblNewLabel_1_1_2_2_1_2 = new JLabel("Disponibilidad");
 		lblNewLabel_1_1_2_2_1_2.setBounds(12, 11, 79, 20);
 		infReserva_2_1_1_1_1.add(lblNewLabel_1_1_2_2_1_2);
-		
-		PanelDispo = new JPanel();
-		PanelDispo.setBounds(101, 11, 102, 23);
-		infReserva_2_1_1_1_1.add(PanelDispo);
-		PanelDispo.setLayout(null);
 		
 		JLabel lblNewLabel_1_1_2_2_1_2_1_1 = new JLabel("Publicidad");
 		lblNewLabel_1_1_2_2_1_2_1_1.setBounds(12, 46, 79, 20);
@@ -214,12 +216,10 @@ public class Registropanel extends JPanel {
 		cbxPublicidad.setBorder(null);
 		cbxPublicidad.setBackground(new Color(85, 147, 85));
 		
-		JLabel lblDisponibilidad = new JLabel("");
-		lblDisponibilidad.setBounds(101, 8, 102, 23);
-		infReserva_2_1_1_1_1.add(lblDisponibilidad);
-		lblDisponibilidad.setBackground(new Color(0, 0, 0));
-		lblDisponibilidad.setBorder(null);
-		lblDisponibilidad.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		PanelDispo = new JPanel();
+		PanelDispo.setBounds(101, 11, 91, 23);
+		infReserva_2_1_1_1_1.add(PanelDispo);
+		PanelDispo.setLayout(null);
 		
 		JPanel infReserva_2_1_1_1_2 = new JPanel();
 		infReserva_2_1_1_1_2.setLayout(null);

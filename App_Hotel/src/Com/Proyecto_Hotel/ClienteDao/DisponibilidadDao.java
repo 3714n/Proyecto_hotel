@@ -20,46 +20,57 @@ public class DisponibilidadDao {
 	public void Consulta (Connection con, Date fecha, JLabel b, JTextField c, JPanel d){ 
 		PreparedStatement pds = null; 
 		ResultSet rst = null;
-		String consulta = "SELECT SUM(Cantidad) AS total_personas FROM Habitaciones WHERE Fecha_entrada = ?";
+		String consulta = "SELECT SUM(C.Cantidad) AS total_personas "
+				+ "FROM datos_cliente C "
+				+ "JOIN habitaciones H "
+				+ "WHERE H.FechaEntrada = ?";
 		String traerTexto = c.getText();
 		int PersonasRegistrada = 0;
 		int cantidadInt = Integer.parseInt(traerTexto);
-		
-		try {
-			 pds = con.prepareStatement (consulta);
-			 pds.setDate(1, new java.sql.Date(fecha.getTime())); // Convierte la fecha de Java util a Java SQL
-			 rst = pds.executeQuery();
-		if (rst.next()) {
-			PersonasRegistrada =  rst.getInt("total_personas");
-			cantidadInt = PersonasRegistrada + cantidadInt; 
-			System.out.println("Personas Registradas: " + cantidadInt);
-		}
-		
-		 if (cantidadInt < 9) { 
-             d.setBackground(Color.GREEN);
-             b.setText("Disponible");
-         } else {
-             d.setBackground(Color.RED);
-             b.setText("Full");
-         }
-		 		 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-            // Cierra la conexión a la base de datos en el bloque finally
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    // Maneja la excepción de cierre de la conexión si es necesario
-                    e.printStackTrace();
-                }
-            }
-        }
-		
-	}
-	
 
+		try {
+		    pds = con.prepareStatement(consulta);
+		    pds.setDate(1, new java.sql.Date(fecha.getTime())); // Convierte la fecha de Java util a Java SQL
+		    rst = pds.executeQuery();
+		    
+		    if (rst.next()) {
+		        PersonasRegistrada =  rst.getInt("total_personas");
+		        cantidadInt = PersonasRegistrada + cantidadInt; 
+		        System.out.println("Personas Registradas: " + cantidadInt);
+		    }
+		    
+		    if (cantidadInt < 9) { 
+		        d.setBackground(Color.GREEN);
+		        b.setText("Disponible");
+		        b.setForeground(Color.BLACK);
+		    } else {
+		        d.setBackground(Color.RED);
+		        b.setText("Full");
+		        b.setForeground(Color.BLACK);
+		    }
+		} catch (Exception e) {
+		    e.printStackTrace();
+		} finally {
+		    // Cierra la conexión a la base de datos en el bloque finally
+		    if (rst != null) {
+		        try {
+		            rst.close();
+		        } catch (SQLException e) {
+		            // Maneja la excepción de cierre de ResultSet si es necesario
+		            e.printStackTrace();
+		        }
+		    }
+		    if (pds != null) {
+		        try {
+		            pds.close();
+		        } catch (SQLException e) {
+		            // Maneja la excepción de cierre del PreparedStatement si es necesario
+		            e.printStackTrace();
+		        }
+		    }
+		}
+	}
+		
 	public void Disponibilidad1(Connection con, JDateChooser a, JLabel b, JTextField c, JPanel d) {
 		Date fechaSeleccionada = a.getDate();
 		if (fechaSeleccionada != null) {
