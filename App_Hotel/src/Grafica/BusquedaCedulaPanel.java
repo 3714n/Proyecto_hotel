@@ -844,9 +844,9 @@ public class BusquedaCedulaPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				cbo.buscarCedula(txtBuscarCedula, table);
 				ClienteBO cbo = new ClienteBO();
-				 Datos_Clientes dcl = new Datos_Clientes();
-				 Datos_Habitacion dhb = new Datos_Habitacion();
-				 String mensaje = cbo.ImportarCeldas(txtBuscarCedula,dcl,dhb);
+				Datos_Clientes dcl = new Datos_Clientes();
+				Datos_Habitacion dhb = new Datos_Habitacion();
+				String mensaje = cbo.ImportarCeldas(txtBuscarCedula,dcl,dhb);
 				 
 				txtNombre.setText(dcl.getNombre());				
 				txtCelular.setText(dcl.getCelular());								 				

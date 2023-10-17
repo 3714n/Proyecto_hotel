@@ -2,6 +2,11 @@ package Com.Proyecto_Hotel.ClienteBO;
 
 import java.sql.Connection;
 
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import com.toedter.calendar.JDateChooser;
+
 import Com.Proyecto_Hotel.ClienteDao.HabitacionDao;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
@@ -72,4 +77,15 @@ public class HabitacionBO {
 		} 
 	return mensaje;		
 		}
+	public void buscarFechaHabitacion (JDateChooser a, Datos_Clientes dcl, Datos_Habitacion dhb) {
+		con = Conexion.getConectar();
+		hbd.buscarFechaHabitacion(con, a, dcl, dhb);
+	
+		try {
+			con.close();
+			System.out.println("Conexion cerrada");
+		} catch (Exception ec) {
+			System.out.println(ec.getMessage());
+		}
+	}
 }

@@ -885,7 +885,7 @@ public class Registropanel extends JPanel {
 					
 			String fechaEntrada = ((JTextField) cldFechaEntrada.getDateEditor().getUiComponent()).getText();	
 			Date fechaEntradaReg =cldFechaEntrada.getDate();									
-			String fechaSalida = ((JTextField) cldFechaReserva.getDateEditor().getUiComponent()).getText();	
+			String fechaSalida = ((JTextField) cldFechaSalida.getDateEditor().getUiComponent()).getText();	
 			Date fechaSalidaReg =cldFechaSalida.getDate();												
 			String fechaReserva = ((JTextField) cldFechaReserva.getDateEditor().getUiComponent()).getText();	
 			Date fechaReservaReg =cldFechaReserva.getDate();

@@ -2,12 +2,16 @@ package Grafica;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
 
+import Com.Proyecto_Hotel.ClienteBO.*;
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
 import Habitaciones.*;
 import Logica.Metodos;
 
@@ -21,10 +25,40 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.awt.Cursor;
+
 
 public class HabitacioPanel extends JPanel {
 	private JPanel MostrarHabitacion;
+	private JLabel btnG1;
+	private JLabel btnG2;
+	private JLabel btnG3;
+	private JLabel btnG4;
+	private JLabel btnG5;
+	private JLabel btnG6;
+	private JLabel btnG7;
+	private JLabel btnG8;
+	private JLabel btnG9;
+	private JLabel btnG10;
+	private JLabel btnC1;
+	private JLabel btnC2;
+	private JLabel btnC3;
+	private JLabel btnC4;
+	private JLabel btnC5;
+	private JLabel btnC6;
+	private JLabel btnA1;
+	private JLabel btnA2;
+	private JLabel btnA3;
+	private JLabel btnA4;
+	private JLabel btnA5;
+	SimpleDateFormat formatoDeseado;
+	
 
 	public HabitacioPanel() {
 		setBounds(168, 77, 1032, 673);
@@ -47,13 +81,15 @@ public class HabitacioPanel extends JPanel {
 		panel_2.add(panel);
 		panel.setLayout(null);
 		
-		JLabel btnG1 = new JLabel("G1");
+		btnG1 = new JLabel("G1");
 		btnG1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				G1_Panel G1 = new G1_Panel();					
 				Metodos.mostrarHabitaciones (G1,MostrarHabitacion);
+				
+				
 			}
 		});
 		btnG1.setBounds(20, 11, 85, 72);
@@ -64,7 +100,7 @@ public class HabitacioPanel extends JPanel {
 		btnG1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnG1.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel btnG2 = new JLabel("G2");
+		btnG2 = new JLabel("G2");
 		btnG2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG2.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -81,7 +117,7 @@ public class HabitacioPanel extends JPanel {
 		btnG2.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnG2.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel btnG3 = new JLabel("G3");
+		btnG3 = new JLabel("G3");
 		btnG3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG3.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -98,7 +134,7 @@ public class HabitacioPanel extends JPanel {
 		btnG3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnG3.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel btnG4 = new JLabel("G4");
+		btnG4 = new JLabel("G4");
 		btnG4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG4.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -115,7 +151,7 @@ public class HabitacioPanel extends JPanel {
 		btnG4.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnG4.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel btnG5 = new JLabel("G5");
+		btnG5 = new JLabel("G5");
 		btnG5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG5.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -132,7 +168,7 @@ public class HabitacioPanel extends JPanel {
 		btnG5.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnG5.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel btnG6 = new JLabel("G6");
+		btnG6 = new JLabel("G6");
 		btnG6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG6.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -149,7 +185,7 @@ public class HabitacioPanel extends JPanel {
 		btnG6.setBounds(20, 94, 85, 72);
 		panel.add(btnG6);
 		
-		JLabel btnG7 = new JLabel("G7");
+		btnG7 = new JLabel("G7");
 		btnG7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG7.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -166,7 +202,7 @@ public class HabitacioPanel extends JPanel {
 		btnG7.setBounds(115, 94, 85, 72);
 		panel.add(btnG7);
 		
-		JLabel btnG8 = new JLabel("G8");
+		btnG8 = new JLabel("G8");
 		btnG8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG8.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -183,7 +219,7 @@ public class HabitacioPanel extends JPanel {
 		btnG8.setBounds(210, 94, 85, 72);
 		panel.add(btnG8);
 		
-		JLabel btnG9 = new JLabel("G9");
+		btnG9 = new JLabel("G9");
 		btnG9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG9.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -200,7 +236,7 @@ public class HabitacioPanel extends JPanel {
 		btnG9.setBounds(305, 94, 85, 72);
 		panel.add(btnG9);
 		
-		JLabel btnG10 = new JLabel("G10");
+		btnG10 = new JLabel("G10");
 		btnG10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnG10.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -223,7 +259,7 @@ public class HabitacioPanel extends JPanel {
 		panel_1.setBounds(10, 200, 508, 178);
 		panel_2.add(panel_1);
 		
-		JLabel btnC1 = new JLabel("C1");
+		btnC1 = new JLabel("C1");
 		btnC1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnC1.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -240,7 +276,7 @@ public class HabitacioPanel extends JPanel {
 		btnC1.setBounds(20, 11, 85, 72);
 		panel_1.add(btnC1);
 		
-		JLabel btnC2 = new JLabel("C2");
+		btnC2 = new JLabel("C2");
 		btnC2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnC2.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -257,7 +293,7 @@ public class HabitacioPanel extends JPanel {
 		btnC2.setBounds(115, 11, 85, 72);
 		panel_1.add(btnC2);
 		
-		JLabel btnC3 = new JLabel("C3");
+		btnC3 = new JLabel("C3");
 		btnC3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnC3.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -274,7 +310,7 @@ public class HabitacioPanel extends JPanel {
 		btnC3.setBounds(210, 11, 85, 72);
 		panel_1.add(btnC3);
 		
-		JLabel btnC4 = new JLabel("C4");
+		btnC4 = new JLabel("C4");
 		btnC4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnC4.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -291,7 +327,7 @@ public class HabitacioPanel extends JPanel {
 		btnC4.setBounds(305, 11, 85, 72);
 		panel_1.add(btnC4);
 		
-		JLabel btnC5 = new JLabel("C5");
+		btnC5 = new JLabel("C5");
 		btnC5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnC5.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -308,7 +344,7 @@ public class HabitacioPanel extends JPanel {
 		btnC5.setBounds(400, 11, 85, 72);
 		panel_1.add(btnC5);
 		
-		JLabel btnC6 = new JLabel("C6");
+		btnC6 = new JLabel("C6");
 		btnC6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnC6.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -330,14 +366,16 @@ public class HabitacioPanel extends JPanel {
 		panel_3.setLayout(null);
 		panel_3.setBounds(10, 389, 508, 200);
 		panel_2.add(panel_3);
-		
-		JLabel btnA1 = new JLabel("A1");
+	
+		btnA1 = new JLabel("A1");
 		btnA1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnA1.addMouseListener(new MouseAdapter() { 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				A1_Panel A1 = new A1_Panel();					
 				Metodos.mostrarHabitaciones (A1,MostrarHabitacion);
+				
+				
 			}
 		});
 		btnA1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
@@ -348,7 +386,7 @@ public class HabitacioPanel extends JPanel {
 		btnA1.setBounds(20, 11, 85, 72);
 		panel_3.add(btnA1);
 		
-		JLabel btnA2 = new JLabel("A2");
+		btnA2 = new JLabel("A2");
 		btnA2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnA2.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -365,7 +403,7 @@ public class HabitacioPanel extends JPanel {
 		btnA2.setBounds(115, 11, 85, 72);
 		panel_3.add(btnA2);
 		
-		JLabel btnA3 = new JLabel("A3");
+		btnA3 = new JLabel("A3");
 		btnA3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnA3.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -382,7 +420,7 @@ public class HabitacioPanel extends JPanel {
 		btnA3.setBounds(210, 11, 85, 72);
 		panel_3.add(btnA3);
 		
-		JLabel btnA4 = new JLabel("A4");
+		btnA4 = new JLabel("A4");
 		btnA4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnA4.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -399,7 +437,7 @@ public class HabitacioPanel extends JPanel {
 		btnA4.setBounds(305, 11, 85, 72);
 		panel_3.add(btnA4);
 		
-		JLabel btnA5 = new JLabel("A5");
+		btnA5 = new JLabel("A5");
 		btnA5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnA5.addMouseListener(new MouseAdapter() { 
 			@Override
@@ -436,10 +474,239 @@ public class HabitacioPanel extends JPanel {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ClienteBO cbo = new ClienteBO();
+				HabitacionBO hbo = new HabitacionBO();
+				Datos_Clientes dcl = new Datos_Clientes();				
+				Datos_Habitacion dhb = new Datos_Habitacion();
+				hbo.buscarFechaHabitacion(cldFecha, dcl, dhb);	
+				try {
+					java.util.Date fechaSalida = new java.util.Date(dhb.getFechaSalida().getTime());
+					Date FechaIngresada = cldFecha.getDate();
+					SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+
+					// Formatear ambas fechas para que solo tengan la hora 00:00:00.0
+					String fechaFormateadaSeleccionada = formatoFecha.format(FechaIngresada);
+					String fechaFormateadaBD = formatoFecha.format(fechaSalida);
+
+					if (dhb.getA1() == true) {
+					        
+					   if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+					       btnA1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+					   } else {
+					     btnA1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+					   }
+					} else {
+					    btnG2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getA2() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnA2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnA2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {				   
+						btnA2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getA3() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnA3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnA3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {			    
+						btnA3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getA4() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnA4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnA4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {		  
+						btnA4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getA5() == true) {   
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnA5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnA5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {				    
+						btnA5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getC1() == true) { 
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnC1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnC1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {				   
+						btnC1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getC2() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnC2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnC2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {    
+						btnC2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getC3() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnC3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnC3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {			   
+						btnC3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}if (dhb.getC4() == true) {
+					   
+					    btnC4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+					} else {
+					    
+						btnC4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}if (dhb.getC5() == true) {
+					   
+					    btnC5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+					} else {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnC5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnC5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					}
+					
+					if (dhb.getC6() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnC6.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnC6.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					   btnC6.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG1() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					    btnG1.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG2() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+						btnG2.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG3() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					   btnG3.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG4() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					   btnG4.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG5() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+						btnG5.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG6() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG6.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG6.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {			    
+						btnG6.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG7() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG7.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG7.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					    btnG7.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG8() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG8.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG8.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					    btnG8.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG9() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG9.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG9.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					   btnG9.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+					
+					if (dhb.getG10() == true) {
+						if (fechaFormateadaBD.equals(fechaFormateadaSeleccionada)) {
+				            btnG10.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionLimpiando.png")));
+				        } else {
+				            btnG10.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionOcupada.png")));
+				        }
+					} else {
+					    btnG10.setIcon(new ImageIcon(HabitacioPanel.class.getResource("/Imagenes/HabitacionDisponible.png")));
+					}
+				} catch (NullPointerException e2) {
+					JOptionPane.showMessageDialog(null, "No hay reserva en esta fecha");
+				}
+				
+				
+			
 			}
 		});
+		
+			
+		
 		btnBuscar.setBounds(272, 25, 99, 26);
 		tblHabitacion.add(btnBuscar);
 
 	}
-}
+		}
+	

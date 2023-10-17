@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +22,9 @@ import javax.swing.event.DocumentListener;
 import com.toedter.calendar.DateUtil;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
+
+import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
+import Grafica.HabitacioPanel;
 
 
 
@@ -212,6 +216,6 @@ public class Metodos {
 		c.repaint();
 	
 	}
-}		
+	
 
-		
+}		

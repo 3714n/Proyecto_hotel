@@ -3,9 +3,15 @@ package Com.Proyecto_Hotel.ClienteDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import com.toedter.calendar.JDateChooser;
 
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Clientes;
 import Com.Proyecto_Hotel.Registro_Clientes.Datos_Habitacion;
@@ -75,7 +81,7 @@ public class HabitacionDao {
 				+ "G1=?, G2=?, G3=?, G4=?, G5=?, G6=?, G7=?, G8=?, G9=?, G10=?,"
 				+ "C1=?, C2=?, C3=?, C4=?, C5=?, C6=?,"
 				+ "A1=?, A2=?, A3=?, A4=?, A5=?,"
-				+ "FechaEntrada = ?, FeChaSalida = ? "				
+				+ "FechaEntrada = ?, FechaSalida = ? "				
 				+ "WHERE cedula =?";
 		try {
 			pst = con.prepareStatement(sql);
@@ -138,5 +144,88 @@ public class HabitacionDao {
 		
 		return mensaje;	
 	}
+    private DefaultTableModel consultarFechaHabitacion(Connection con, Date fecha,Datos_Clientes dcl, Datos_Habitacion hbd) {
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    try {
+	        // Prepara la consulta SQL para seleccionar datos de la tabla Habitaciones
+	        String sql = "SELECT dc .*, h.*"
+	                + " FROM DATOS_CLIENTE dc"
+	                + " INNER JOIN Habitaciones h ON dc.Cedula = h.Cedula"
+	                + " WHERE ? BETWEEN h.FechaEntrada AND h.FechaSalida";
+
+	        ps = con.prepareStatement(sql);
+	        ps.setDate(1, new java.sql.Date(fecha.getTime())); // Convierte la fecha de Java util a Java SQL
+
+	        rs = ps.executeQuery();
+	        if (rs.next()) {
+	            dcl.setNombre(rs.getString("Nombre"));
+	            dcl.setCedula(rs.getString("Cedula"));
+	            dcl.setCelular(rs.getString("Celular"));
+	            hbd.setFechaEntrada(rs.getTimestamp("FechaEntrada"));
+	            hbd.setFechaSalida(rs.getTimestamp("FechaSalida"));
+	            dcl.setCantidad(rs.getInt("Cantidad"));
+	            dcl.setPago(rs.getInt("Pagos"));
+	            dcl.setNoche(rs.getInt("Noches"));
+	            dcl.setHora_Entrada(rs.getString("Hora_entrada"));
+	            dcl.setFecha_Reserva(rs.getTimestamp("Fecha_Reserva"));
+	            dcl.setTarifa(rs.getInt("Tarifa"));
+	            dcl.setMetodo_pago(rs.getString("Metodos_pagos"));
+	            dcl.setTotal_Pagado(rs.getInt("Total_pagos"));
+	            dcl.setValor_pagar(rs.getInt("Valor_pagar"));
+	            dcl.setDiferencia(rs.getInt("Diferencia"));
+	            dcl.setPaquete(rs.getString("Paquete"));
+	            
+	            
+	            hbd.setA1(rs.getBoolean("A1"));
+	            hbd.setA2(rs.getBoolean("A2"));
+	            hbd.setA3(rs.getBoolean("A3"));
+	            hbd.setA4(rs.getBoolean("A4"));
+	            hbd.setA5(rs.getBoolean("A5"));
+	            hbd.setC1(rs.getBoolean("C1"));
+	            hbd.setC2(rs.getBoolean("C2"));
+	            hbd.setC3(rs.getBoolean("C3"));
+	            hbd.setC4(rs.getBoolean("C4"));
+	            hbd.setC5(rs.getBoolean("C5"));
+	            hbd.setC6(rs.getBoolean("C6"));
+	            hbd.setG1(rs.getBoolean("G1"));
+	            hbd.setG2(rs.getBoolean("G2"));
+	            hbd.setG3(rs.getBoolean("G3"));
+	            hbd.setG4(rs.getBoolean("G4"));
+	            hbd.setG5(rs.getBoolean("G5"));
+	            hbd.setG6(rs.getBoolean("G6"));
+	            hbd.setG7(rs.getBoolean("G7"));
+	            hbd.setG8(rs.getBoolean("G8"));
+	            hbd.setG9(rs.getBoolean("G9"));
+	            hbd.setG10(rs.getBoolean("G10"));
+	        }else {
+	        	
+	        }
+	    }catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	                System.out.println("Conexion cerrada");
+	            }
+	            if (ps != null) {
+	                ps.close();
+	                System.out.println("Conexion cerrada");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	
+    return null;
+    }
+    public void buscarFechaHabitacion(Connection con, JDateChooser a,Datos_Clientes dcl, Datos_Habitacion hbd ) {
+		Date fechaSeleccionada = a.getDate();
+	   if (fechaSeleccionada != null) { 
+			consultarFechaHabitacion(con, fechaSeleccionada,dcl, hbd);	        
+	   }else {
+		   JOptionPane.showMessageDialog(null, "Seleccione una fecha antes de buscar.");
+	   }
+	}
 }

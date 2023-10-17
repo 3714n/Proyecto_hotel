@@ -14,6 +14,8 @@ public class A1_Panel extends JPanel {
 
 	
 	public A1_Panel() {
+		JLabel lblHabitacionCLiente;
+		
 		setBounds(10, 11, 454, 578);
 		setLayout(null);
 		
@@ -163,7 +165,7 @@ public class A1_Panel extends JPanel {
 		lblCliente.setBounds(10, 41, 67, 14);
 		panel_1_1.add(lblCliente);
 		
-		JLabel lblHabitacionCLiente = new JLabel("");
+		lblHabitacionCLiente = new JLabel("");
 		lblHabitacionCLiente.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lblHabitacionCLiente.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblHabitacionCLiente.setBounds(87, 41, 127, 14);
@@ -334,6 +336,13 @@ public class A1_Panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-
+		
+		
+		
+		
+		
+		
 	}
+	
+	
 }
